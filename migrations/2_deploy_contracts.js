@@ -1,6 +1,6 @@
 const TokenGenerator = artifacts.require("TokenGenerator");
 const CelebrityOwnerToken = artifacts.require("CelebrityOwnerToken");
-const FANCToken = artifacts.require("FANCTOKEN");
+const FANCToken = artifacts.require("FANCToken");
 const FANCTokenICO = artifacts.require("FANCTokenICO");
 const Oracle = artifacts.require("Oracle");
 const CelebrityExchange = artifacts.require("CelebrityExchange");

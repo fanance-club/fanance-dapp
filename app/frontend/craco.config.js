@@ -11,6 +11,7 @@ module.exports = {
 							"@primary-color": "#18FFFF",
 							"@text-color": "black",
 							"@btn-primary-color": "black",
+							"@layout-header-height": "50px",
 						},
 						javascriptEnabled: true,
 					},

@@ -1,0 +1,113 @@
+@import "~antd/dist/antd.less";
+
+@width: 5px;
+@bg-active-gray: #212121;
+@bg-inactive-gray: gray;
+
+.celebrityExchange {
+	background-color: black;
+	color: white;
+	height: 100vh;
+}
+.buySellButton {
+	width: calc(25vw / 2 - 5px);
+	background-color: @bg-active-gray;
+	border-bottom: 0px;
+	color: white;
+}
+.buyButton {
+	border-top: 5px solid #55bd6c;
+	border-right: 1px solid @bg-inactive-gray;
+	border-left: 0px;
+	background-color: @bg-active-gray;
+	.buySellButton();
+}
+.buyButton:focus {
+	outline-width: 0px;
+}
+.sellButton {
+	border-top: 5px solid #f1432f;
+	border-left: 1px solid @bg-inactive-gray;
+	border-right: 0px;
+	.buySellButton();
+}
+.sellButton:focus {
+	outline-width: 0px;
+}
+
+.ant-card-bordered {
+	border-top: @width solid black;
+	border-right: @width solid black;
+	border-left: @width solid black;
+	color: white;
+}
+.bordered-top-element {
+	border-bottom: 0px;
+}
+.bordered-bottom-element {
+	border-bottom: @width solid black;
+	.ant-card-bordered();
+}
+
+.dark-bg {
+	background-color: @bg-active-gray;
+}
+
+.placeOrders {
+	height: calc(50vh - 25px);
+	height: -o-calc(50vh - 25px);
+	height: -webkit-calc(50vh - 25px);
+	height: -moz-calc(50vh - 25px);
+
+	width: 25vw;
+	.dark-bg();
+	.bordered-top-element();
+}
+.userOrders {
+	height: calc(50vh - 25px);
+	height: -o-calc(50vh - 25px);
+	height: -webkit-calc(50vh - 25px);
+	height: -moz-calc(50vh - 25px);
+	width: 25vw;
+	.dark-bg();
+	.bordered-bottom-element();
+}
+.orderBook {
+	height: calc(50vh - 25px);
+	height: -o-calc(50vh - 25px);
+	height: -webkit-calc(50vh - 25px);
+	height: -moz-calc(50vh - 25px);
+	.dark-bg();
+	.bordered-bottom-element();
+	border-left: 0px;
+}
+.trades {
+	height: calc(50vh - 25px);
+	height: -o-calc(50vh - 25px);
+	height: -webkit-calc(50vh - 25px);
+	height: -moz-calc(50vh - 25px);
+	.dark-bg();
+	.bordered-bottom-element();
+	border-right: 0px;
+	border-left: 0px;
+}
+.priceChart {
+	height: calc(50vh - 25px);
+	height: -o-calc(50vh - 25px);
+	height: -webkit-calc(50vh - 25px);
+	height: -moz-calc(50vh - 25px);
+	width: 50vw;
+	.dark-bg();
+	.bordered-top-element();
+	border-right: 0px;
+	border-left: 0px;
+}
+.tokensList {
+	height: calc(100vh - 50px);
+	height: -o-calc(100vh - 50px);
+	height: -webkit-calc(100vh - 50px);
+	height: -moz-calc(100vh - 50px);
+	width: 25vw;
+	.dark-bg();
+	.bordered-bottom-element();
+}

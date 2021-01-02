@@ -1,48 +1,37 @@
 import React, { Component } from "react";
 import "./App.less";
 import Sample from "./Sample";
-import SetString from "./setString";
+import CelebrityExchangeComponent from "./components/CelebrityExchangeComponent";
+import HigherOrderComponent from "./hocs/Layout";
 
-import { Button } from "antd";
+import { DrizzleContext } from "drizzle-react";
 
 class App extends Component {
-	state = { loading: true, drizzleState: null };
-
-	componentDidMount() {
-		const { drizzle } = this.props;
-
-		// subscribe to changes in the store
-		this.unsubscribe = drizzle.store.subscribe(() => {
-			// every time the store updates, grab the state from drizzle
-			const drizzleState = drizzle.store.getState();
-
-			// check to see if it's ready, if so, update local component state
-			if (drizzleState.drizzleStatus.initialized) {
-				this.setState({ loading: false, drizzleState });
-			}
-		});
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
-	}
-
 	render() {
-		if (this.state.loading) return "Loading Drizzle...";
 		return (
-			<div className="App">
-				<Sample
-					drizzle={this.props.drizzle}
-					drizzleState={this.state.drizzleState}
-				/>
-				<SetString
-					drizzle={this.props.drizzle}
-					drizzleState={this.state.drizzleState}
-				/>
-				<Button type="primary">Hello World</Button>
-			</div>
+			<DrizzleContext.Consumer>
+				{(drizzleContext) => {
+					const { drizzle, drizzleState, initialized } = drizzleContext;
+
+					if (!initialized) {
+						return "Loading...";
+					}
+
+					return (
+						<React.Fragment>
+							<section className="celebrityExchange">
+								<CelebrityExchangeComponent
+									drizzle={drizzle}
+									drizzleState={drizzleState}
+								/>
+							</section>
+							<Sample drizzle={drizzle} drizzleState={drizzleState} />
+						</React.Fragment>
+					);
+				}}
+			</DrizzleContext.Consumer>
 		);
 	}
 }
-
+App = HigherOrderComponent(App);
 export default App;

@@ -1,30 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import drizzle functions and contract artifact
-import { Drizzle } from "@drizzle/store";
-import TokenGenerator from "./contracts/TokenGenerator.json";
 
-// let drizzle know what contracts we want and how to access our test blockchain
-const options = {
-	contracts: [TokenGenerator],
-	web3: {
-		fallback: {
-			type: "http",
-			url: "http://127.0.0.1:7545",
-		},
-	},
-};
-
-// setup drizzle
-const drizzle = new Drizzle(options);
+// 1. Import drizzle, drizzle-react, and your contract artifacts.
+import { Drizzle, generateStore } from "@drizzle/store";
+import { DrizzleContext } from "drizzle-react";
+import drizzleOptions from "./drizzleOptions";
+const initialState = { nothing: false };
+// 2. Setup the drizzle instance.
+const drizzleStore = generateStore(drizzleOptions, initialState);
+const drizzle = new Drizzle(drizzleOptions, drizzleStore);
 
 ReactDOM.render(
-	<React.StrictMode>
-		<App drizzle={drizzle} />
-	</React.StrictMode>,
+	<DrizzleContext.Provider drizzle={drizzle}>
+		<App />
+	</DrizzleContext.Provider>,
 	document.getElementById("root")
 );
 

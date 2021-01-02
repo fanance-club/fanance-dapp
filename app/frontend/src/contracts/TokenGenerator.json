@@ -20658,6 +20658,138 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x9fc3d786781575482e1c10b1149bd9deaf80eb554fc135cf51362fcc31ef8e36": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "ERC20Address",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "creator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "tokenName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "symbol",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "supply",
+              "type": "uint256"
+            }
+          ],
+          "name": "celebrityTokenGenerated",
+          "type": "event"
+        },
+        "0x4e498c8d68fdd8b29f285b04fb000119e35ee5d750b914ac14ce84cd37919391": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "celebrityID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "celebrityTokenAddress",
+              "type": "address"
+            }
+          ],
+          "name": "celebrityTokenRequestApproved",
+          "type": "event"
+        },
+        "0x8cb38bad23990c316519b1efeafa9f3d5c55f5295bd92f54129dff6e2c0a3498": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "creator",
+              "type": "address"
+            }
+          ],
+          "name": "celebrityTokenRequestGenerated",
+          "type": "event"
+        },
+        "0x4a20b9a1427aa8925fe73af10b16b0e37d62cf14f6790faf3307b6cb417d4dd0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "reason",
+              "type": "string"
+            }
+          ],
+          "name": "celebrityTokenRequestRejected",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xf19e81755400714C3A481b670C21284E040f76cb",
+      "transactionHash": "0xd4593ec009116c6bb5b366b72f445a6ba78dd33067f5d74f79cdd10822a1b758"
+    },
     "5777": {
       "events": {
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
@@ -20787,12 +20919,12 @@
         }
       },
       "links": {},
-      "address": "0xb64D7a8667902Fc2406fE8e72E70C09F14Ca1Ace",
-      "transactionHash": "0x5dad774cc07da55acce466aaa9f865322387c8911acac4c16d7af896433defb9"
+      "address": "0x139DFC6C806e895a961a4d941246D53bFEAa0160",
+      "transactionHash": "0x6d1fa6a22e85439dff4c92b517e8194c9dae9f8b3e769b4f08483c32771e31d1"
     }
   },
   "schemaVersion": "3.2.3",
-  "updatedAt": "2021-01-01T20:39:08.318Z",
+  "updatedAt": "2021-01-02T13:11:13.769Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

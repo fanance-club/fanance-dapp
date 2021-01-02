@@ -1314,7 +1314,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.3",
-  "updatedAt": "2021-01-01T20:38:50.945Z",
+  "updatedAt": "2021-01-02T10:46:49.419Z",
   "devdoc": {
     "details": "Implementation of the {IERC165} interface. * Contracts may inherit from this and call {_registerInterface} to declare their support of an interface.",
     "methods": {
