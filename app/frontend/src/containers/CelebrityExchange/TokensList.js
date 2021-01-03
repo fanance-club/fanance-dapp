@@ -1,11 +1,15 @@
 import React from "react";
 import { Card } from "antd";
 
+import IndividualTokenDetail from "./IndividualTokenDetail";
+
+const { Meta } = Card;
 const TokensList = () => {
 	return (
 		<div>
 			<Card className="tokensList">
-				<p>TokensList</p>
+				<Meta title="Other Celebrities" />
+				<IndividualTokenDetail />
 			</Card>
 		</div>
 	);

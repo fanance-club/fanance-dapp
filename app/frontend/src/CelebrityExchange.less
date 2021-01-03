@@ -34,6 +34,25 @@
 .sellButton:focus {
 	outline-width: 0px;
 }
+.openOrders {
+	border-top: 5px solid #f9de37;
+	border-right: 1px solid @bg-inactive-gray;
+	border-left: 0px;
+	background-color: @bg-active-gray;
+	.buySellButton();
+}
+.openOrders:focus {
+	outline-width: 0px;
+}
+.completedOrders {
+	border-top: 5px solid #55bd6c;
+	border-left: 1px solid @bg-inactive-gray;
+	border-right: 0px;
+	.buySellButton();
+}
+.completedOrders:focus {
+	outline-width: 0px;
+}
 
 .ant-card-bordered {
 	border-top: @width solid black;
@@ -110,4 +129,39 @@
 	width: 25vw;
 	.dark-bg();
 	.bordered-bottom-element();
+}
+
+.tokensList .ant-card-body {
+	padding: 5px;
+	margin: 0px 0px 8px 0px !important;
+}
+.tokensList .ant-card-meta-title {
+	text-align: center;
+	margin: 0px 0px 8px 0px !important;
+	color: white !important;
+}
+
+.individualToken {
+	padding: 0px;
+	border-top: 0px !important;
+	border-bottom: 0px !important;
+	border-right: 0px !important;
+	border-left: 0px !important;
+	background-color: #424242;
+}
+
+.ant-card-body {
+	padding: 5px;
+}
+.individualToken .ant-card-meta-description {
+	text-align: right;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+}
+.individualToken .ant-card-meta-title {
+	font-size: 15px;
+	color: white;
+	margin: 0px 0px 2px 0px !important;
+	text-align: left;
 }

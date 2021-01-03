@@ -1,13 +1,24 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Tabs, Radio, Button } from "antd";
+
+const { TabPane } = Tabs;
 
 const UserOrders = () => {
 	return (
-		<div>
-			<Card className="userOrders">
-				<p>UserOrders</p>
-			</Card>
-		</div>
+		<section>
+			{/* buy order seperate component, sell order seperate, load dynamically */}
+			<div
+				style={{ position: "absolute", top: "5px", zIndex: "5", left: "5px" }}
+			>
+				<button type="button" className="openOrders">
+					OPEN ORDERS
+				</button>
+				<button type="button" className="completedOrders">
+					COMPLETED ORDERS
+				</button>
+			</div>
+			<Card className="userOrders"></Card>
+		</section>
 	);
 };
 
