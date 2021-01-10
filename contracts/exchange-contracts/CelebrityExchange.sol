@@ -774,10 +774,6 @@ contract CelebrityExchange is Ownable {
 			CelebrityToken(_celebrityToken).balanceOf(msg.sender) >= _tokenSell,
 			"Not enough token balance to place order"
 		);
-		require(
-			!CelebrityToken(_celebrityToken).isTradingAllowedOnCelebrityExchange(),
-			"Initial Sell order cannot be placed when token already traded in exchange"
-		);
 
 		uint256 bidPrice = _amountReceive.mul(10**18).div(_tokenSell);
 

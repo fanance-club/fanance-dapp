@@ -23,6 +23,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
     "@truffle/hdwallet-provider": "^1.2.1",
+    "create-next-app": "^10.0.4",
     "drizzle": "^1.4.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"

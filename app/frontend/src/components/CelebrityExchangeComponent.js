@@ -13,59 +13,101 @@ import "../CelebrityExchange.less";
 
 import { Row, Col } from "antd";
 
-const CelebrityExchangeComponent = () => {
-	return (
-		<React.Fragment>
-			<Row>
-				<Col span={6}>
-					<TokensList />
-				</Col>
-				<Col span={12}>
-					<Row>
-						<Col span="24">
-							<PriceChart />
-						</Col>
-						<Col span="24">
-							<Row>
-								<Col span="14">
-									<OrderBook />
-								</Col>
-								<Col span="10">
-									<Trades />
-								</Col>
-							</Row>
-						</Col>
-					</Row>
-				</Col>
-				<Col span={6}>
-					<Row>
-						<Col span="24">
-							<PlaceOrders />
-						</Col>
+class CelebrityExchangeComponent extends React.Component {
+	state = { buyOrders: [], sellOrders: [] };
+	handleBuyOrders = (buyOrders) => {
+		this.setState({ buyOrders });
 
-						<Col span="24">
-							<UserOrders />
-						</Col>
-					</Row>
-				</Col>
-			</Row>
-			<section></section>
-			<section>
-				<AssetStats />
-			</section>
-			<section></section>
-			<section></section>
-			<section></section>
-			<section></section>
-			<section>
-				<CelebrityStats />
-			</section>
-			<section>
-				<MarketActivities />
-			</section>
-			<section></section>
-		</React.Fragment>
-	);
-};
+		// let topBuyOrders = buyOrders.sort((a, b) => b.buyPrice - a.buyPrice);
+		// let liquidityRequired = topBuyOrders[0] + topBuyOrders[1] + topBuyOrders[2];
+		// let currentLiquidity = this.state.sellOrders.filter(
+		// 	(order) => order.id == 0
+		// ).tokensLeftToSell;
+		// let currentPrice = this.state.sellOrders.filter((order) => order.id == 0)
+		// 	.sellPrice;
+		// if (currentLiquidity - liquidityRequired < 0) {
+		// 	// updateInitialSellOrder(currentPrice,currentLiquidity - liquidityRequired);
+		// }
+	};
+	handleSellOrders = (sellOrders) => {
+		this.setState({ sellOrders });
+	};
+	updateInitialSellOrder = (price, tokens) => {
+		// this.props.drizzle.contracts.CelebrityExchange.methods.updateInitialSellOrder.cacheSend()
+	};
+
+	render() {
+		return (
+			<React.Fragment>
+				<Row>
+					<Col span={6}>
+						<TokensList />
+					</Col>
+					<Col span={12}>
+						<Row>
+							<Col span={24}>
+								<PriceChart />
+							</Col>
+							<Col span={24}>
+								<Row>
+									<Col span={14}>
+										<OrderBook
+											drizzle={this.props.drizzle}
+											drizzleState={this.props.drizzleState}
+											handleBuyOrders={this.handleBuyOrders}
+											handleSellOrders={this.handleSellOrders}
+										/>
+									</Col>
+									<Col span={10}>
+										<Trades
+											drizzle={this.props.drizzle}
+											drizzleState={this.props.drizzleState}
+											buyOrders={this.state.buyOrders}
+											sellOrders={this.state.sellOrders}
+										/>
+									</Col>
+								</Row>
+							</Col>
+						</Row>
+					</Col>
+					<Col span={6}>
+						<Row>
+							<Col span={24}>
+								<PlaceOrders
+									drizzle={this.props.drizzle}
+									drizzleState={this.props.drizzleState}
+								/>
+							</Col>
+
+							<Col span={24}>
+								<UserOrders
+									drizzle={this.props.drizzle}
+									drizzleState={this.props.drizzleState}
+									buyOrders={this.state.buyOrders}
+									sellOrders={this.state.sellOrders}
+								/>
+							</Col>
+						</Row>
+					</Col>
+				</Row>
+				<section></section>
+				<section>
+					<AssetStats />
+				</section>
+				<section></section>
+				<section></section>
+				<section></section>
+				<section></section>
+				<section>
+					<CelebrityStats />
+				</section>
+				<section>
+					<MarketActivities />
+				</section>
+				<section></section>
+			</React.Fragment>
+		);
+	}
+}
 
 export default CelebrityExchangeComponent;

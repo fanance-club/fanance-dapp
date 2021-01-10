@@ -1,65 +1,98 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Row, Col } from "antd";
+import BuyOrderBook from "./BuyOrderBook";
+import SellOrderBook from "./SellOrderBook";
 
-const OrderBook = () => {
+export default function Orderbook(props) {
+	const [buyOrderCount, setBuyOrderCount] = useState(0);
+	const [sellOrderCount, setSellOrderCount] = useState(0);
+	useEffect(() => {
+		const tempBuyOrderCount = props.drizzle.contracts.CelebrityExchange.methods[
+			"buyOrderCount"
+		].cacheCall();
+		setBuyOrderCount(tempBuyOrderCount);
+		const tempSellOrderCount = props.drizzle.contracts.CelebrityExchange.methods[
+			"sellOrderCount"
+		].cacheCall();
+		setSellOrderCount(tempSellOrderCount);
+	}, [props.drizzle.contracts.CelebrityExchange]);
 	return (
-		<div className="">
-			<Card className="orderBook">
+		<React.Fragment>
+			<Card className="orderBook" style={{ overflow: "hidden" }}>
 				<Row>
 					<Col span="12">
 						<p
 							style={{
 								textAlign: "center",
 								color: "white",
-								fontSize: "12",
+								fontSize: "14px",
 							}}
 						>
 							Open Buy Orders
 						</p>
-						<table style={{ width: "95%", textAlign: "right" }}>
-							<tr>
-								<th>Volume</th>
-								<th>Buy Price</th>
-							</tr>
-							<tr>
-								<td>1000</td>
-								<td style={{ color: "#55bd6c" }}>0.0034</td>
-							</tr>
-							<tr>
-								<td>500</td>
-								<td style={{ color: "#55bd6c" }}>0.0032</td>
-							</tr>
+
+						<table
+							style={{
+								width: "95%",
+								textAlign: "right",
+							}}
+						>
+							<thead>
+								<tr>
+									<th>Volume</th>
+									<th>Buy Price</th>
+								</tr>
+							</thead>
 						</table>
+						<div style={{ height: "100%", overflow: "hidden" }}>
+							<table
+								style={{
+									width: "95%",
+									textAlign: "right",
+								}}
+							>
+								<tbody>
+									<BuyOrderBook
+										drizzle={props.drizzle}
+										drizzleState={props.drizzleState}
+										buyOrderCount={buyOrderCount}
+										handleBuyOrders={props.handleBuyOrders}
+									/>
+								</tbody>
+							</table>
+						</div>
 					</Col>
 					<Col span="12">
 						<p
 							style={{
 								textAlign: "center",
 								color: "white",
-								fontSize: "12",
+								fontSize: "14px",
 							}}
 						>
 							Open Sell Orders
 						</p>
-						<table style={{ width: "100%" }}>
-							<tr>
-								<th>Sell Price</th>
-								<th>Volume</th>
-							</tr>
-							<tr>
-								<td style={{ color: "#f1432f" }}>0.0035</td>
-								<td>1200</td>
-							</tr>
-							<tr>
-								<td style={{ color: "#f1432f" }}>0.0040</td>
-								<td>120</td>
-							</tr>
-						</table>
+						<div style={{ height: "100%", overflow: "hidden" }}>
+							<table style={{ width: "95%" }}>
+								<thead>
+									<tr>
+										<th>Sell Price</th>
+										<th>Volume</th>
+									</tr>
+								</thead>
+								<tbody>
+									<SellOrderBook
+										drizzle={props.drizzle}
+										drizzleState={props.drizzleState}
+										sellOrderCount={sellOrderCount}
+										handleSellOrders={props.handleSellOrders}
+									/>
+								</tbody>
+							</table>
+						</div>
 					</Col>
 				</Row>
 			</Card>
-		</div>
+		</React.Fragment>
 	);
-};
-
-export default OrderBook;
+}
