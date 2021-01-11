@@ -90,7 +90,7 @@ export default function UserOrders(props) {
 					checked={openFocused}
 				/>
 				<label
-					for="OPEN"
+					htmlFor="OPEN"
 					style={{
 						borderTop: `${
 							openFocused ? "5px solid #f9de37" : "5px solid #424242"
@@ -108,7 +108,7 @@ export default function UserOrders(props) {
 					checked={!openFocused}
 				/>
 				<label
-					for="COMPLETED"
+					htmlFor="COMPLETED"
 					style={{
 						borderTop: `${
 							!openFocused ? "5px solid #55bd6c" : "5px solid #424242"
@@ -142,7 +142,7 @@ export default function UserOrders(props) {
 						{openFocused && typeof allOpenOrders[0] != "undefined"
 							? allOpenOrders.map((order) => {
 									return (
-										<tr key={order.id}>
+										<tr key={order.timestamp}>
 											<td>{"FC-MSD"}</td>
 											<td>{order.tokens}</td>
 											<td>{order.price}</td>
@@ -160,7 +160,7 @@ export default function UserOrders(props) {
 						{!openFocused && typeof allHistoryOrders[0] != "undefined"
 							? allHistoryOrders.map((order) => {
 									return (
-										<tr key={order.id}>
+										<tr key={order.timestamp}>
 											<td>{"FC-MSD"}</td>
 											<td>{order.tokens}</td>
 											<td>{order.price}</td>

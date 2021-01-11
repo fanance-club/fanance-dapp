@@ -13,75 +13,74 @@ import "../CelebrityExchange.less";
 
 import { Row, Col } from "antd";
 
-class CelebrityExchangeComponent extends React.Component {
-	render() {
-		return (
-			<React.Fragment>
-				<Row>
-					<Col span={6}>
-						<TokensList />
-					</Col>
-					<Col span={12}>
-						<Row>
-							<Col span={24}>
-								<PriceChart />
-							</Col>
-							<Col span={24}>
-								<Row>
-									<Col span={14}>
-										<OrderBook
-											drizzleState={this.props.drizzleState}
-											buyOrders={this.props.buyOrders}
-											sellOrders={this.props.sellOrders}
-										/>
-									</Col>
-									<Col span={10}>
-										<Trades
-											drizzle={this.props.drizzle}
-											drizzleState={this.props.drizzleState}
-											completedTrades={this.props.completedTrades}
-										/>
-									</Col>
-								</Row>
-							</Col>
-						</Row>
-					</Col>
-					<Col span={6}>
-						<Row>
-							<Col span={24}>
-								<PlaceOrders
-									drizzle={this.props.drizzle}
-									drizzleState={this.props.drizzleState}
-								/>
-							</Col>
+const CelebrityExchangeComponent = (props) => {
+	return (
+		<React.Fragment>
+			<Row>
+				<Col span={6}>
+					<TokensList />
+				</Col>
+				<Col span={12}>
+					<Row>
+						<Col span={24}>
+							<PriceChart />
+						</Col>
+						<Col span={24}>
+							<Row>
+								<Col span={14}>
+									<OrderBook
+										drizzleState={props.drizzleState}
+										buyOrders={props.buyOrders}
+										sellOrders={props.sellOrders}
+									/>
+								</Col>
+								<Col span={10}>
+									<Trades
+										drizzle={props.drizzle}
+										drizzleState={props.drizzleState}
+										completedTrades={props.completedTrades}
+									/>
+								</Col>
+							</Row>
+						</Col>
+					</Row>
+				</Col>
+				<Col span={6}>
+					<Row>
+						<Col span={24}>
+							<PlaceOrders
+								drizzle={props.drizzle}
+								drizzleState={props.drizzleState}
+								symbol={props.match.params.symbol}
+							/>
+						</Col>
 
-							<Col span={24}>
-								<UserOrders
-									buyOrders={this.props.buyOrders}
-									sellOrders={this.props.sellOrders}
-								/>
-							</Col>
-						</Row>
-					</Col>
-				</Row>
-				<section></section>
-				<section>
-					<AssetStats />
-				</section>
-				<section></section>
-				<section></section>
-				<section></section>
-				<section></section>
-				<section>
-					<CelebrityStats />
-				</section>
-				<section>
-					<MarketActivities />
-				</section>
-				<section></section>
-			</React.Fragment>
-		);
-	}
-}
+						<Col span={24}>
+							<UserOrders
+								buyOrders={props.buyOrders}
+								sellOrders={props.sellOrders}
+							/>
+						</Col>
+					</Row>
+				</Col>
+			</Row>
+			<section></section>
+			<section>
+				<AssetStats />
+			</section>
+			<section></section>
+			<section></section>
+			<section></section>
+			<section></section>
+			<section>
+				<CelebrityStats />
+			</section>
+			<section>
+				<MarketActivities />
+			</section>
+			<section></section>
+		</React.Fragment>
+	);
+};
 
 export default CelebrityExchangeComponent;

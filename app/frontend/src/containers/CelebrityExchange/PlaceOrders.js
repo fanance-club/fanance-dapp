@@ -75,7 +75,7 @@ export default function PlaceOrders(props) {
 					checked={buyFocused}
 				/>
 				<label
-					for="BUY"
+					htmlFor="BUY"
 					style={{
 						borderTop: `${
 							buyFocused ? "5px solid #55bd6c" : "5px solid #424242"
@@ -93,7 +93,7 @@ export default function PlaceOrders(props) {
 					checked={!buyFocused}
 				/>
 				<label
-					for="SELL"
+					htmlFor="SELL"
 					style={{
 						borderTop: `${
 							!buyFocused ? "5px solid #f1432f" : "5px solid #424242"
@@ -149,7 +149,7 @@ export default function PlaceOrders(props) {
 								width: "50%",
 							}}
 						>
-							{buyFocused ? "BUY" : "SELL"}
+							{buyFocused ? `BUY ${props.symbol}` : `SELL ${props.symbol}`}
 						</Button>
 					</Form>
 					<div>{getTxStatus()}</div>

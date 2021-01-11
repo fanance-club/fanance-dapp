@@ -9,7 +9,12 @@ const HigherOrderComponent = (WrappedComponent) => {
 		constructor(props) {
 			super(props);
 			// Don't call this.setState() here!
-			this.state = { buyOrders: [], sellOrders: [], completedTrades: [] };
+			this.state = {
+				buyOrders: [],
+				sellOrders: [],
+				completedTrades: [],
+				tokensList: [],
+			};
 		}
 		handleBuyOrders = (buyOrders) => {
 			this.setState({ buyOrders });
@@ -19,6 +24,9 @@ const HigherOrderComponent = (WrappedComponent) => {
 		};
 		handleCompletedTrades = (trades) => {
 			this.setState({ completedTrades: trades });
+		};
+		handleTokensList = (tokensList) => {
+			this.setState({ tokensList });
 		};
 		render() {
 			return (
@@ -38,6 +46,7 @@ const HigherOrderComponent = (WrappedComponent) => {
 									handleBuyOrders={this.handleBuyOrders}
 									handleSellOrders={this.handleSellOrders}
 									handleCompletedTrades={this.handleCompletedTrades}
+									handleTokensList={this.handleTokensList}
 								/>
 								<Layout>
 									<Header
@@ -65,6 +74,7 @@ const HigherOrderComponent = (WrappedComponent) => {
 											buyOrders={this.state.buyOrders}
 											sellOrders={this.state.sellOrders}
 											completedTrades={this.state.completedTrades}
+											tokensList={this.state.tokensList}
 										/>
 									</Content>
 									<Footer></Footer>

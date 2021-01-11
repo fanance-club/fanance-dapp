@@ -7,6 +7,7 @@ export default function FetchContractData(props) {
 	// To provide as dependency for useEffect
 	const events = props.drizzleState.contracts["CelebrityExchange"].events;
 	const [completedTrades, setCompletedTrades] = useState([]);
+	const [tokensList, setTokensList] = useState([]);
 	useEffect(
 		() => {
 			const tempBuyOrderCount = props.drizzle.contracts.CelebrityExchange.methods[
@@ -17,6 +18,11 @@ export default function FetchContractData(props) {
 				"sellOrderCount"
 			].cacheCall();
 			setSellOrderCount(tempSellOrderCount);
+			//Fetch tokens from CelebrityToken
+			const tempTokensList = props.drizzle.contracts.TokenGenerator.methods[
+				"getAllCelebrities"
+			].cacheCall();
+			setTokensList(tempTokensList);
 
 			// Fetch trades from events
 			async function getTrades() {
@@ -84,10 +90,13 @@ export default function FetchContractData(props) {
 						.concat(completedPartialBuyOrders)
 				);
 			}
+
 			getTrades();
+
 			// eslint-disable-next-line react-hooks/exhaustive-deps
 		},
 		[props.drizzle.contracts.CelebrityExchange],
+		[props.drizzle.contracts.TokenGenerator],
 		events
 	);
 
@@ -99,6 +108,8 @@ export default function FetchContractData(props) {
 			handleBuyOrders={props.handleBuyOrders}
 			sellOrderCount={sellOrderCount}
 			handleSellOrders={props.handleSellOrders}
+			handleTokensList={props.handleTokensList}
+			tokensList={tokensList}
 		/>
 	);
 }
