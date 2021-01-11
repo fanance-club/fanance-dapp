@@ -9,29 +9,20 @@ import { DrizzleContext } from "drizzle-react";
 class App extends Component {
 	render() {
 		return (
-			<DrizzleContext.Consumer>
-				{(drizzleContext) => {
-					const { drizzle, drizzleState, initialized } = drizzleContext;
-
-					if (!initialized) {
-						return "Loading...";
-					}
-
-					return (
-						<React.Fragment>
-							<section className="celebrityExchange">
-								<CelebrityExchangeComponent
-									drizzle={drizzle}
-									drizzleState={drizzleState}
-								/>
-							</section>
-							<Sample drizzle={drizzle} drizzleState={drizzleState} />
-						</React.Fragment>
-					);
-				}}
-			</DrizzleContext.Consumer>
+			<React.Fragment>
+				<section className="celebrityExchange">
+					<CelebrityExchangeComponent
+						drizzle={this.props.drizzle}
+						drizzleState={this.props.drizzleState}
+						buyOrders={this.props.buyOrders}
+						sellOrders={this.props.sellOrders}
+						completedTrades={this.props.completedTrades}
+					/>
+				</section>
+			</React.Fragment>
 		);
 	}
 }
+
 App = HigherOrderComponent(App);
 export default App;

@@ -1,37 +1,31 @@
 import React, { useState, useEffect } from "react";
-import BuyOrderDetails from "./BuyOrderDetails";
 
 export default function BuyOrderBook(props) {
-	const [buyOrders, setBuyOrders] = useState([{ id: 0 }]);
-	const [buyOrderCountValue, setBuyOrderCountValue] = useState(0);
-	useEffect(() => {
-		let count =
-			props.drizzleState.contracts.CelebrityExchange.buyOrderCount[
-				props.buyOrderCount
-			];
-		let tempBuyOrders = [];
-		for (let i = 0; i < (count && count.value); i++) {
-			let buyOrder = props.drizzle.contracts.CelebrityExchange.methods[
-				"buyOrders"
-			].cacheCall(i);
-			tempBuyOrders.push(buyOrder);
-		}
-		setBuyOrders(tempBuyOrders);
-		setBuyOrderCountValue(count && count.value);
-	}, [
-		props.drizzleState.contracts.CelebrityExchange.buyOrderCount,
-		props.drizzle.contracts.CelebrityExchange,
-		props.buyOrderCount,
-	]);
 	return (
 		<React.Fragment>
-			<BuyOrderDetails
-				drizzle={props.drizzle}
-				drizzleState={props.drizzleState}
-				orders={buyOrders}
-				count={buyOrderCountValue}
-				handleBuyOrders={props.handleBuyOrders}
-			/>
+			{typeof props.buyOrders != "undefined"
+				? props.buyOrders
+						.filter((a) =>
+							typeof a != "undefined" ? a.status == 0 || a.status == 1 : null
+						)
+						.sort((a, b) => b.buyPrice - a.buyPrice)
+						.map((order, index) => {
+							return (
+								<tr key={index}>
+									<td>
+										{typeof order != "undefined"
+											? order.tokensLeftToBuy / 10 ** 18
+											: null}
+									</td>
+									<td style={{ color: "#55bd6c" }}>
+										{typeof order != "undefined"
+											? order.buyPrice / 10 ** 18
+											: null}
+									</td>
+								</tr>
+							);
+						})
+				: null}
 		</React.Fragment>
 	);
 }

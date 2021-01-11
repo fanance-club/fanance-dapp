@@ -14,28 +14,6 @@ import "../CelebrityExchange.less";
 import { Row, Col } from "antd";
 
 class CelebrityExchangeComponent extends React.Component {
-	state = { buyOrders: [], sellOrders: [] };
-	handleBuyOrders = (buyOrders) => {
-		this.setState({ buyOrders });
-
-		// let topBuyOrders = buyOrders.sort((a, b) => b.buyPrice - a.buyPrice);
-		// let liquidityRequired = topBuyOrders[0] + topBuyOrders[1] + topBuyOrders[2];
-		// let currentLiquidity = this.state.sellOrders.filter(
-		// 	(order) => order.id == 0
-		// ).tokensLeftToSell;
-		// let currentPrice = this.state.sellOrders.filter((order) => order.id == 0)
-		// 	.sellPrice;
-		// if (currentLiquidity - liquidityRequired < 0) {
-		// 	// updateInitialSellOrder(currentPrice,currentLiquidity - liquidityRequired);
-		// }
-	};
-	handleSellOrders = (sellOrders) => {
-		this.setState({ sellOrders });
-	};
-	updateInitialSellOrder = (price, tokens) => {
-		// this.props.drizzle.contracts.CelebrityExchange.methods.updateInitialSellOrder.cacheSend()
-	};
-
 	render() {
 		return (
 			<React.Fragment>
@@ -52,18 +30,16 @@ class CelebrityExchangeComponent extends React.Component {
 								<Row>
 									<Col span={14}>
 										<OrderBook
-											drizzle={this.props.drizzle}
 											drizzleState={this.props.drizzleState}
-											handleBuyOrders={this.handleBuyOrders}
-											handleSellOrders={this.handleSellOrders}
+											buyOrders={this.props.buyOrders}
+											sellOrders={this.props.sellOrders}
 										/>
 									</Col>
 									<Col span={10}>
 										<Trades
 											drizzle={this.props.drizzle}
 											drizzleState={this.props.drizzleState}
-											buyOrders={this.state.buyOrders}
-											sellOrders={this.state.sellOrders}
+											completedTrades={this.props.completedTrades}
 										/>
 									</Col>
 								</Row>
@@ -81,10 +57,8 @@ class CelebrityExchangeComponent extends React.Component {
 
 							<Col span={24}>
 								<UserOrders
-									drizzle={this.props.drizzle}
-									drizzleState={this.props.drizzleState}
-									buyOrders={this.state.buyOrders}
-									sellOrders={this.state.sellOrders}
+									buyOrders={this.props.buyOrders}
+									sellOrders={this.props.sellOrders}
 								/>
 							</Col>
 						</Row>

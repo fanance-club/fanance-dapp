@@ -4,18 +4,6 @@ import BuyOrderBook from "./BuyOrderBook";
 import SellOrderBook from "./SellOrderBook";
 
 export default function Orderbook(props) {
-	const [buyOrderCount, setBuyOrderCount] = useState(0);
-	const [sellOrderCount, setSellOrderCount] = useState(0);
-	useEffect(() => {
-		const tempBuyOrderCount = props.drizzle.contracts.CelebrityExchange.methods[
-			"buyOrderCount"
-		].cacheCall();
-		setBuyOrderCount(tempBuyOrderCount);
-		const tempSellOrderCount = props.drizzle.contracts.CelebrityExchange.methods[
-			"sellOrderCount"
-		].cacheCall();
-		setSellOrderCount(tempSellOrderCount);
-	}, [props.drizzle.contracts.CelebrityExchange]);
 	return (
 		<React.Fragment>
 			<Card className="orderBook" style={{ overflow: "hidden" }}>
@@ -53,10 +41,8 @@ export default function Orderbook(props) {
 							>
 								<tbody>
 									<BuyOrderBook
-										drizzle={props.drizzle}
 										drizzleState={props.drizzleState}
-										buyOrderCount={buyOrderCount}
-										handleBuyOrders={props.handleBuyOrders}
+										buyOrders={props.buyOrders}
 									/>
 								</tbody>
 							</table>
@@ -82,10 +68,8 @@ export default function Orderbook(props) {
 								</thead>
 								<tbody>
 									<SellOrderBook
-										drizzle={props.drizzle}
 										drizzleState={props.drizzleState}
-										sellOrderCount={sellOrderCount}
-										handleSellOrders={props.handleSellOrders}
+										sellOrders={props.sellOrders}
 									/>
 								</tbody>
 							</table>
